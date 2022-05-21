@@ -9,37 +9,38 @@ const Logo = () => {
   const outlineLogoRef = useRef();
   const solidLogoRef = useRef();
 
-  useEffect(() => {
-    gsap.registerPlugin(DrawSVGPlugin);
+  // un comment for svg drawing eff
+  // useEffect(() => {
+  //   gsap.registerPlugin(DrawSVGPlugin);
 
-    gsap
-      .timeline()
-      .to(bgRef.current, {
-        duration: 1,
-        opacity: 1,
-      })
-      gsap.fromTo(
-        outlineLogoRef.current,{
-          drawSVG:'0',
-        },{
-          duration:12,
-          drawSVG:'100%',
+  //   gsap
+  //     .timeline()
+  //     .to(bgRef.current, {
+  //       duration: 1,
+  //       opacity: 1,
+  //     })
+  //     gsap.fromTo(
+  //       outlineLogoRef.current,{
+  //         drawSVG:'0',
+  //       },{
+  //         duration:12,
+  //         drawSVG:'100%',
 
-        }
-      )
+  //       }
+  //     )
 
-    gsap.fromTo(
-      solidLogoRef.current,
-      {
-        opacity: 0,
-      },
-      {
-        opacity: 1,
-        delay: 3,
-        duration: 4,
-      }
-    );
-  }, []);
+  //   gsap.fromTo(
+  //     solidLogoRef.current,
+  //     {
+  //       opacity: 0,
+  //     },
+  //     {
+  //       opacity: 1,
+  //       delay: 3,
+  //       duration: 4,
+  //     }
+  //   );
+  // }, []);
 
   return (
     <div className="logo-container" ref={bgRef}>
