@@ -2,27 +2,40 @@ import React, { useEffect, useRef, useState } from "react";
 import Loader from "react-loaders";
 import AnimatedLetters from "../AnimatedLetters";
 import "./Contact.scss";
-import emailjs from "@emailjs/browser";
 import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
-
+import emailjs from '@emailjs/browser';
 export default function Contact() {
   const [letterClass, setletterClass] = useState("text-animate");
-  const refForm = useRef;
+  const Form = useRef()
   const position = [51.505, -0.09]
 
-  //   const sendForm = (e) => {
-  //     e.preventDefault();
+  const sendToMe = (e) => {
+    e.preventDefault()
+    console.log('jii');
 
-  //     emailjs.sendForm("gmail", "gmaid", refForm.current, "").then(
-  //       () => {
-  //         alert("massage sucessfully send!");
-  //         window.location.reload(false);
-  //       },
-  //       (error) => {
-  //         alert("error", error);
-  //       }
-  //     );
-  //   };
+    emailjs.sendForm('service_t8slnyo','template_xdzaxsu',Form.current , "iJLlM8ox_3Xz_2Snq")
+      .then((result)=>{
+        console.log('s');
+        window.location.reload(false)
+      },(error) => {
+        console.log(error.text)
+      })
+
+  }
+  const sendForm = (e) => {
+    e.preventDefault();
+
+    emailjs.sendForm("", "",'reft',).then(
+      () => {
+        alert("massage sucessfully send!");
+        window.location.reload(false);
+      },
+      (error) => {
+        alert("error", error);
+      }
+    );
+  };
+    
 
   useEffect(() => {
     setTimeout(() => {
@@ -46,10 +59,10 @@ export default function Contact() {
             natus enim?
           </p>
           <div className="contact-form">
-            <form>
+            <form  onSubmit={sendToMe} ref={Form}>
               <ul>
                 {" "}
-                {/*  ref={refForm} onSubmit={sendForm} */}
+                {/* */}
                 <li className="half">
                   <input type="text" name="name" placeholder="Name" required />
                 </li>
@@ -77,7 +90,7 @@ export default function Contact() {
                   ></textarea>
                 </li>
                 <li>
-                  <input type="button" value="Send" className="flat-button" />
+                  <input type="submit" value="Send" className="flat-button" />
                 </li>
               </ul>
             </form>
